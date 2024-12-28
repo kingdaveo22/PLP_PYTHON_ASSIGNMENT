@@ -1,0 +1,22 @@
+body {
+    background-color: #e0f7fa;  /* A light, refreshing blue background */
+    font-family: Arial, sans-serif;
+}
+.weather-container {
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.weather-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+.weather-container form {
+    margin-bottom: 20px;
+}
+.weather-container .weather-info {
+    margin-top: 20px;
+}

@@ -1,0 +1,26 @@
+{% extends "weather/base.html" %}
+
+{% block title %}Weather App{% endblock %}
+
+{% block content %}
+<div class="weather-container">
+    <h1 class="text-center">Weather App</h1>
+    <form method="post" class="form-inline justify-content-center">
+        {% csrf_token %}
+        {{ form.city.label_tag }}
+        <input type="text" name="city" id="id_city" class="form-control mr-2" maxlength="100" required>
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+    </form>
+    {% if weather_data %}
+        <div class="weather-info text-center">
+            {% if weather_data.message %}
+                <p class="alert alert-danger">{{ weather_data.message }}</p>
+            {% else %}
+                <h2>Weather in {{ weather_data.name }}</h2>
+                <p>Temperature: {{ weather_data.main.temp }} °C</p>
+                <p>Weather: {{ weather_data.weather.0.description }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
