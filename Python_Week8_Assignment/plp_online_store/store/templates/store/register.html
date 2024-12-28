@@ -1,0 +1,60 @@
+{% extends "store/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Register</h2>
+<form method="post" id="registerForm" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_username">Username</label>
+        <input type="text" class="form-control" id="id_username" name="username" required>
+        <div class="invalid-feedback">Please provide a valid username.</div>
+    </div>
+    <div class="form-group">
+        <label for="id_email">Email address</label>
+        <input type="email" class="form-control" id="id_email" name="email" required>
+        <div class="invalid-feedback">Please provide a valid email address.</div>
+    </div>
+    <div class="form-group">
+        <label for="id_password1">Password</label>
+        <input type="password" class="form-control" id="id_password1" name="password1" required>
+        <small class="form-text text-muted">
+            Your password must contain at least 8 characters, and cannot be a commonly used password or entirely numeric.
+        </small>
+        <div class="invalid-feedback">Please provide a valid password.</div>
+    </div>
+    <div class="form-group">
+        <label for="id_password2">Confirm Password</label>
+        <input type="password" class="form-control" id="id_password2" name="password2" required>
+        <div class="invalid-feedback">Passwords do not match.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<script>
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var form = document.getElementById('registerForm');
+        form.addEventListener('submit', function(event) {
+            var password = document.getElementById('id_password1').value;
+            var confirmPassword = document.getElementById('id_password2').value;
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                event.stopPropagation();
+                document.getElementById('id_password2').setCustomValidity('Passwords do not match');
+            } else {
+                document.getElementById('id_password2').setCustomValidity('');
+            }
+
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    }, false);
+})();
+</script>
+{% endblock %}
